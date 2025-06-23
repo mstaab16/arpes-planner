@@ -10,13 +10,13 @@ services:
       - HOST=0.0.0.0
       - PORT=8050
       - DEBUG=false
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8050/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    # restart: unless-stopped
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8050/"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 40s
     labels:
       - "com.docker.compose.project=arpes-planner"
       - "description=ARPES Planner"

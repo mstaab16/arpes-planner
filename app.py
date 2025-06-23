@@ -21,7 +21,7 @@ app = Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
     html.Div([
         html.Div([
-            html.H1("ARPES Momentum Calculator", style={
+            html.H1("Plan your ARPES experiment with style.", style={
                 'margin': '0',
                 'fontSize': '2.5rem',
                 'fontWeight': '800',
@@ -29,7 +29,16 @@ app.layout = html.Div([
                 'letterSpacing': '-0.02em',
                 'fontFamily': 'Inter, sans-serif'
             }),
-            html.Div("Advanced Photoelectron Spectroscopy Momentum Coordinate Analysis", style={
+            html.Div([
+                "A planning tool made by ",
+                html.A(
+                    "Matthew Staab",
+                    href="https://github.com/mstaab16",
+                    target="_blank",
+                    style={'color': '#fbbf24', 'textDecoration': 'underline'}
+                ),
+                "."
+            ], style={
                 'marginTop': '10px',
                 'fontSize': '1.1rem',
                 'opacity': '0.9',
@@ -151,7 +160,7 @@ app.layout = html.Div([
             # Sample Offset Parameters Row
             html.Div([
                 html.Div([
-                    html.Label("Sample Normal Offset Along Slits (deg)", style={
+                    html.Label("Sample Normal Offset Along Slit (deg)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -161,7 +170,7 @@ app.layout = html.Div([
                         'letterSpacing': '0.05em',
                         'fontFamily': 'Inter, sans-serif'
                     }),
-                    dcc.Input(id="offset-along-slits", type="number", value=0, debounce=True, style={
+                    dcc.Input(id="offset-along-slit", type="number", value=0, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
                         'border': '2px solid #000000',
@@ -180,7 +189,7 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Sample Normal Offset Perpendicular to Slits (deg)", style={
+                    html.Label("Sample Normal Offset Perpendicular to Slit (deg)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -190,7 +199,7 @@ app.layout = html.Div([
                         'letterSpacing': '0.05em',
                         'fontFamily': 'Inter, sans-serif'
                     }),
-                    dcc.Input(id="offset-perpendicular-slits", type="number", value=0, debounce=True, style={
+                    dcc.Input(id="offset-perpendicular-slit", type="number", value=0, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
                         'border': '2px solid #000000',
@@ -287,7 +296,7 @@ app.layout = html.Div([
             }),
             html.Div([
                 html.Div([
-                    html.Label("Start", style={
+                    html.Label("Start (deg)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -316,7 +325,7 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("End", style={
+                    html.Label("End (deg)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -388,7 +397,7 @@ app.layout = html.Div([
             }),
             html.Div([
                 html.Div([
-                    html.Label("Start", style={
+                    html.Label("Start (deg)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -417,7 +426,7 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("End", style={
+                    html.Label("End (deg)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -489,7 +498,7 @@ app.layout = html.Div([
             }),
             html.Div([
                 html.Div([
-                    html.Label("b1 (kx,ky,kz)", style={
+                    html.Label("b1 (kx,ky,kz) (1/Å)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -518,7 +527,7 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("b2 (kx,ky,kz)", style={
+                    html.Label("b2 (kx,ky,kz) (1/Å)", style={
                         'display': 'block',
                         'fontWeight': '600',
                         'color': '#000000',
@@ -635,18 +644,6 @@ app.layout = html.Div([
             })
         ], style={'display': 'flex'}),
         
-        # Results Section
-        html.Div([
-            html.Div(id="results-info")
-        ], style={
-            'background': '#1e40af',
-            'color': '#ffffff',
-            'border': '3px solid #000000',
-            'padding': '20px',
-            'marginBottom': '20px',
-            'boxShadow': '4px 4px 0px #000000'
-        }),
-        
         dcc.Download(id="download-csv"),
         dcc.Store(id='calculated-data-store')
         
@@ -679,13 +676,12 @@ def parse_text_input(input_str, is_matrix=False):
 @callback(
     [Output("absolute-plot", "figure"),
      Output("projected-plot", "figure"),
-     Output("results-info", "children"),
      Output("calculated-data-store", "data")],
     [Input("photon-energy", "value"),
      Input("inner-potential", "value"),
      Input("work-function", "value"),
-     Input("offset-along-slits", "value"),
-     Input("offset-perpendicular-slits", "value"),
+     Input("offset-along-slit", "value"),
+     Input("offset-perpendicular-slit", "value"),
      Input("sample-normal", "value"),
      Input("slit-direction", "value"),
      Input("slit-angle-start", "value"),
@@ -699,20 +695,20 @@ def parse_text_input(input_str, is_matrix=False):
      Input("b3-vec", "value")]
 )
 def update_plot(photon_energy, inner_potential, work_function,
-                offset_along_slits, offset_perpendicular_slits,
+                offset_along_slit, offset_perpendicular_slit,
                 sample_normal_str, slit_direction_str,
                 slit_start, slit_end, slit_count,
                 deflector_start, deflector_end, deflector_count,
                 b1_str, b2_str, b3_str):
     
-    inputs = [photon_energy, inner_potential, work_function, offset_along_slits, offset_perpendicular_slits,
+    inputs = [photon_energy, inner_potential, work_function, offset_along_slit, offset_perpendicular_slit,
               sample_normal_str, slit_direction_str, slit_start, slit_end, slit_count,
               deflector_start, deflector_end, deflector_count, b1_str, b2_str, b3_str]
     if any(i is None for i in inputs):
         raise PreventUpdate
 
     if slit_count > COUNT_LIMIT or deflector_count > COUNT_LIMIT:
-        return go.Figure(), go.Figure(), html.Div(f"Error: Slit and deflector counts cannot be greater than {COUNT_LIMIT}."), {}
+        return go.Figure(), go.Figure(), {}
 
     # Create angle grids
     slit_angles = np.linspace(slit_start, slit_end, slit_count)
@@ -727,8 +723,8 @@ def update_plot(photon_energy, inner_potential, work_function,
     photon_energies = np.full(n_points, photon_energy)
     inner_potentials = np.full(n_points, inner_potential)
     work_functions = np.full(n_points, work_function)
-    sample_normal_offsets_along_slits = np.full(n_points, offset_along_slits)
-    sample_normal_offsets_perpendicular_to_slits = np.full(n_points, offset_perpendicular_slits)
+    sample_normal_offsets_along_slit = np.full(n_points, offset_along_slit)
+    sample_normal_offsets_perpendicular_to_slit = np.full(n_points, offset_perpendicular_slit)
 
     sample_normal = parse_text_input(sample_normal_str)
     sample_normal = np.array([sample_normal])
@@ -742,7 +738,7 @@ def update_plot(photon_energy, inner_potential, work_function,
     b3 = parse_text_input(b3_str)
 
     if sample_normal is None or slit_direction is None or b1 is None or b2 is None or b3 is None:
-        return go.Figure(), go.Figure(), html.Div("Error: Invalid vector or matrix input."), {}
+        return go.Figure(), go.Figure(), {}
 
     reciprocal_lattice = np.array([b1, b2, b3])
     sample_normals = np.tile(sample_normal, (n_points, 1))
@@ -752,7 +748,7 @@ def update_plot(photon_energy, inner_potential, work_function,
         # Call the function
         final_momentum_coords, projected_coords, _ = absolute_and_projected_momentum_coords(
             photon_energies, slit_values, deflector_values, inner_potentials, work_functions,
-            sample_normal_offsets_along_slits, sample_normal_offsets_perpendicular_to_slits,
+            sample_normal_offsets_along_slit, sample_normal_offsets_perpendicular_to_slit,
             sample_normals, slit_directions, reciprocal_lattice
         )
         
@@ -811,11 +807,12 @@ def update_plot(photon_energy, inner_potential, work_function,
                 color=slit_values,
                 colorscale='Viridis',
                 colorbar_title='Slit Angle (deg)'
-            )
+            ),
+            showlegend=False
         )])
         
         projected_fig.update_layout(
-            title="Projected Momentum Coordinates",
+            title="Momentum coordinates in the first Brillouin zone",
             scene=dict(
                 xaxis_title="k_x_rel (Å⁻¹)",
                 yaxis_title="k_y_rel (Å⁻¹)",
@@ -841,21 +838,12 @@ def update_plot(photon_energy, inner_potential, work_function,
                 y=ridge_starts[:, 1],
                 z=ridge_starts[:, 2],
                 mode='lines',
-                marker=dict(color='black', size=1),
+                line=dict(color='black', width=1),
                 showlegend=False,
             ))
 
 
 
-        # Create results info
-        results_info = html.Div([
-            html.H4("Results Summary"),
-            html.P(f"Number of points: {n_points}"),
-            html.P(f"k_x range: [{final_momentum_coords[:, 0].min():.3f}, {final_momentum_coords[:, 0].max():.3f}] Å⁻¹"),
-            html.P(f"k_y range: [{final_momentum_coords[:, 1].min():.3f}, {final_momentum_coords[:, 1].max():.3f}] Å⁻¹"),
-            html.P(f"k_z range: [{final_momentum_coords[:, 2].min():.3f}, {final_momentum_coords[:, 2].max():.3f}] Å⁻¹"),
-        ])
-        
         data_to_store = {
             'slit_angle': slit_values.tolist(),
             'deflector_angle': deflector_values.tolist(),
@@ -867,10 +855,10 @@ def update_plot(photon_energy, inner_potential, work_function,
             'kz_rel': projected_coords[:, 2].tolist(),
         }
 
-        return absolute_fig, projected_fig, results_info, data_to_store
+        return absolute_fig, projected_fig, data_to_store
         
     except Exception as e:
-        return go.Figure(), go.Figure(), html.Div(f"Error in calculation: {str(e)}"), {}
+        return go.Figure(), go.Figure(), {}
 
 @callback(
     Output("download-csv", "data"),
@@ -890,8 +878,8 @@ def absolute_and_projected_momentum_coords(
     deflector_values, # (n,)
     inner_potentials, # (n,)
     work_functions, # (n,)
-    sample_normal_offset_along_slits, # (n,)
-    sample_normal_offset_perpendicular_to_slits, # (n,)
+    sample_normal_offset_along_slit, # (n,)
+    sample_normal_offset_perpendicular_to_slit, # (n,)
     sample_normals, # (n, 3)
     slit_directions, # (n, 3)
     reciprocal_lattice, # (3, 3)
@@ -913,8 +901,8 @@ def absolute_and_projected_momentum_coords(
         deflector_angle = deflector_values[i]
         V0 = inner_potentials[i]
         phi = work_functions[i]
-        offset_slit = sample_normal_offset_along_slits[i]
-        offset_deflector = sample_normal_offset_perpendicular_to_slits[i]
+        offset_slit = sample_normal_offset_along_slit[i]
+        offset_deflector = sample_normal_offset_perpendicular_to_slit[i]
 
         undeflected_slit_rotation_axis = np.cross(normal, slit_dir)
         basis = np.empty((3, 3))
@@ -965,4 +953,10 @@ def absolute_and_projected_momentum_coords(
     return final_momentum_coords, projected_coords, rounded_coords
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 8050))
+    host = os.environ.get('HOST', 'localhost')
+    debug = os.environ.get('DEBUG', 'false').lower() == 'true'
+    app.title = "ARPES Planner"
+    app.description = "A planning tool made by <a href='https://github.com/mstaab16'>Matthew Staab</a>."
+    app.run(debug=debug, host=host, port=port)
