@@ -1,0 +1,28 @@
+services:
+  arpes-planner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arpes-planner
+    ports:
+      - "8050:8050"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8050
+      - DEBUG=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8050/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.docker.compose.project=arpes-planner"
+      - "description=ARPES Planner"
+    networks:
+      - arpes-planner-network
+
+networks:
+  arpes-planner-network:
+    driver: bridge
