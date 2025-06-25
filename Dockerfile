@@ -10,6 +10,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PORT=8050
 ENV HOST=0.0.0.0
 
+COPY assets/ /app/assets/
+
 # Install system dependencies
 # RUN apt-get update && apt-get install -y \
 #     gcc \

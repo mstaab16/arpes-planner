@@ -67,16 +67,27 @@ app.layout = html.Div([
             # Energy Parameters Row
             html.Div([
                 html.Div([
-                    html.Label("Photon Energy (eV)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Photon Energy (eV)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Energy of the incident photons used in the ARPES experiment. Determines the kinetic energy of emitted electrons.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="photon-energy", type="number", value=21.2, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -96,16 +107,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Inner Potential (eV)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Inner Potential (eV)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="The inner potential of the sample material. Affects the perpendicular momentum of emitted electrons.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="inner-potential", type="number", value=13, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -125,16 +147,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Work Function (eV)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Work Function (eV)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="The work function of the sample surface. Energy required to remove an electron from the surface.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="work-function", type="number", value=4.5, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -160,16 +193,27 @@ app.layout = html.Div([
             # Sample Offset Parameters Row
             html.Div([
                 html.Div([
-                    html.Label("Sample Normal Offset Along Slit (deg)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Sample Normal Offset Along Slit (deg)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Location of normal emission along the slit direction.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="offset-along-slit", type="number", value=0, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -189,16 +233,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Sample Normal Offset Perpendicular to Slit (deg)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Sample Normal Offset Perpendicular to Slit (deg)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Location of normal emission perpendicular to the slit direction (Polar angle / Deflector angle).")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="offset-perpendicular-slit", type="number", value=0, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -224,16 +279,27 @@ app.layout = html.Div([
             # Vector Parameters Row
             html.Div([
                 html.Div([
-                    html.Label("Sample Normal (x,y,z)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Sample Normal (x,y,z)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="The direction of normal emission from the sample surface. In the crystal coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="sample-normal", type="text", value="0,0,1", debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -253,16 +319,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Slit Direction (x,y,z)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Slit Direction (x,y,z)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="If the sample normal emission was aligned with 0 degrees on the analyzer this is the direction of the slit in the crystal coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="slit-direction", type="text", value="1,0,0", debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -296,16 +373,27 @@ app.layout = html.Div([
             }),
             html.Div([
                 html.Div([
-                    html.Label("Start (deg)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.8rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Start (deg)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.8rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Starting angle for the slit rotation scan in degrees. Analyzer coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="slit-angle-start", type="number", value=-15, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -325,16 +413,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("End (deg)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.8rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("End (deg)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.8rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Ending angle for the slit rotation scan in degrees. Analyzer coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="slit-angle-end", type="number", value=15, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -354,16 +453,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Count", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.8rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Count", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.8rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Number of points to calculate along the slit angle scan. Max 200 to avoid bogging down the system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="slit-angle-count", type="number", value=31, min=1, max=COUNT_LIMIT, step=1, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -397,16 +507,27 @@ app.layout = html.Div([
             }),
             html.Div([
                 html.Div([
-                    html.Label("Start (deg)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.8rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Start (deg)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.8rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Starting angle for the deflector (polar) rotation scan in degrees. Analyzer coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="deflector-angle-start", type="number", value=-15, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -426,16 +547,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("End (deg)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.8rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("End (deg)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.8rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Ending angle for the deflector (polar) rotation scan in degrees. Analyzer coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="deflector-angle-end", type="number", value=15, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -455,16 +587,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("Count", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.8rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("Count", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.8rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Number of points to calculate along the deflector angle scan. Max 200 to avoid bogging down the system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="deflector-angle-count", type="number", value=31, min=1, max=COUNT_LIMIT, step=1, debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -498,16 +641,27 @@ app.layout = html.Div([
             }),
             html.Div([
                 html.Div([
-                    html.Label("b1 (kx,ky,kz) (1/Å)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("b1 (kx,ky,kz) (1/Å)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="First primitive reciprocal lattice vector in units of inverse Angstroms. Defines the crystal structure. In the crystal coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="b1-vec", type="text", value="1,0,0", debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -527,16 +681,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("b2 (kx,ky,kz) (1/Å)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("b2 (kx,ky,kz) (1/Å)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Second primitive reciprocal lattice vector in units of inverse Angstroms. Defines the crystal structure. In the crystal coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="b2-vec", type="text", value="0,1,0", debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
@@ -556,16 +721,27 @@ app.layout = html.Div([
                     'boxShadow': '3px 3px 0px #000000'
                 }),
                 html.Div([
-                    html.Label("b3 (kx,ky,kz)", style={
-                        'display': 'block',
-                        'fontWeight': '600',
-                        'color': '#000000',
-                        'marginBottom': '8px',
-                        'fontSize': '0.9rem',
-                        'textTransform': 'uppercase',
-                        'letterSpacing': '0.05em',
-                        'fontFamily': 'Inter, sans-serif'
-                    }),
+                    html.Div([
+                        html.Label("b3 (kx,ky,kz)", style={
+                            'display': 'inline-block',
+                            'fontWeight': '600',
+                            'color': '#000000',
+                            'marginBottom': '8px',
+                            'fontSize': '0.9rem',
+                            'textTransform': 'uppercase',
+                            'letterSpacing': '0.05em',
+                            'fontFamily': 'Inter, sans-serif'
+                        }),
+                        html.Div("ⓘ", style={
+                            'marginLeft': '8px',
+                            'marginBottom': '8px',
+                            'cursor': 'help',
+                            'fontSize': '1.2rem',
+                            'color': '#1e40af',
+                            'position': 'relative',
+                            'display': 'inline-block'
+                        }, title="Third primitive reciprocal lattice vector in units of inverse Angstroms. Defines the crystal structure. In the crystal coordinate system.")
+                    ], style={'display': 'flex', 'alignItems': 'center', 'justifyContent': 'space-between'}),
                     dcc.Input(id="b3-vec", type="text", value="0,0,1", debounce=True, style={
                         'width': '100%',
                         'padding': '12px',
