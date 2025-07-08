@@ -26,6 +26,141 @@ app.index_string = '''
             <title>{%title%}</title>
             {%favicon%}
             {%css%}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                /* Mobile-first responsive design */
+                @media (max-width: 768px) {
+                    /* Make config boxes stack in single column */
+                    .config-row {
+                        flex-direction: column !important;
+                    }
+                    
+                    .config-row > div {
+                        margin-right: 0 !important;
+                        margin-bottom: 10px !important;
+                        flex: none !important;
+                        width: 100% !important;
+                    }
+                    
+                    /* Make plots stack vertically */
+                    .plot-container {
+                        flex-direction: column !important;
+                    }
+                    
+                    .plot-container > div {
+                        margin-right: 0 !important;
+                        margin-bottom: 20px !important;
+                        flex: none !important;
+                        width: 100% !important;
+                    }
+                    
+                    /* Adjust padding for mobile */
+                    .main-container {
+                        padding: 15px !important;
+                    }
+                    
+                    .config-section {
+                        padding: 20px !important;
+                    }
+                    
+                    /* Make title more readable on mobile */
+                    .title {
+                        font-size: 1.8rem !important;
+                        padding: 20px !important;
+                    }
+                    
+                    .subtitle {
+                        font-size: 0.9rem !important;
+                    }
+                    
+                    /* Improve plot responsiveness on mobile */
+                    .plot-container .js-plotly-plot {
+                        width: 100% !important;
+                        height: 400px !important;
+                    }
+                    
+                    /* Adjust plot margins for mobile */
+                    .plot-container .plotly-graph-div {
+                        margin: 0 !important;
+                        padding: 0 !important;
+                    }
+                    
+                    /* Make plot titles more compact on mobile */
+                    .plot-container .gtitle {
+                        font-size: 1rem !important;
+                        margin-bottom: 10px !important;
+                    }
+                    
+                    /* Adjust colorbar positioning */
+                    .plot-container .colorbar {
+                        width: 20px !important;
+                        height: 200px !important;
+                    }
+                }
+                
+                /* Tablet adjustments */
+                @media (min-width: 769px) and (max-width: 1024px) {
+                    .config-row {
+                        flex-wrap: wrap !important;
+                    }
+                    
+                    .config-row > div {
+                        flex: 1 1 calc(50% - 10px) !important;
+                        min-width: 250px !important;
+                    }
+                    
+                    .plot-container {
+                        flex-direction: column !important;
+                    }
+                    
+                    .plot-container > div {
+                        margin-right: 0 !important;
+                        margin-bottom: 20px !important;
+                    }
+                    
+                    /* Improve plot responsiveness on tablet */
+                    .plot-container .js-plotly-plot {
+                        width: 100% !important;
+                        height: 500px !important;
+                    }
+                }
+                
+                /* Ensure proper spacing and readability */
+                @media (max-width: 480px) {
+                    .main-container {
+                        padding: 10px !important;
+                    }
+                    
+                    .config-section {
+                        padding: 15px !important;
+                    }
+                    
+                    .title {
+                        font-size: 1.5rem !important;
+                        padding: 15px !important;
+                    }
+                    
+                    /* Even more compact plots for small mobile */
+                    .plot-container .js-plotly-plot {
+                        height: 350px !important;
+                    }
+                    
+                    .plot-container .gtitle {
+                        font-size: 0.9rem !important;
+                        margin-bottom: 5px !important;
+                    }
+                }
+                
+                /* General plot improvements */
+                .plot-container .js-plotly-plot {
+                    max-width: 100% !important;
+                    overflow: hidden !important;
+                }
+                
+                .plot-container .plotly-graph-div {
+                    width: 100% !important;
+                }
+            </style>
             <script>
 			!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 			posthog.init('phc_2SL8mCI2sJXNV0sVxBogA1iSRmSkLuGq537A4K6Ixu2', {
@@ -48,44 +183,44 @@ app.index_string = '''
 
 # Neobrutalist CSS styles
 app.layout = html.Div([
-    html.Div([
-        html.Div([
-            html.H1("Plan your ARPES experiment with style.", style={
-                'margin': '0',
-                'fontSize': '2.5rem',
-                'fontWeight': '800',
-                'textTransform': 'uppercase',
-                'letterSpacing': '-0.02em',
-                'fontFamily': 'Inter, sans-serif'
-            }),
             html.Div([
-                "A planning tool made by ",
-                html.A(
-                    "Matthew Staab",
-                    href="https://github.com/mstaab16",
-                    target="_blank",
-                    style={'color': '#fbbf24', 'textDecoration': 'underline'}
-                ),
-                "."
+            html.Div([
+                html.H1("Plan your ARPES experiment with style.", style={
+                    'margin': '0',
+                    'fontSize': 'clamp(1.5rem, 4vw, 2.5rem)',
+                    'fontWeight': '800',
+                    'textTransform': 'uppercase',
+                    'letterSpacing': '-0.02em',
+                    'fontFamily': 'Inter, sans-serif'
+                }, className='title'),
+                html.Div([
+                    "A planning tool made by ",
+                    html.A(
+                        "Matthew Staab",
+                        href="https://github.com/mstaab16",
+                        target="_blank",
+                        style={'color': '#fbbf24', 'textDecoration': 'underline'}
+                    ),
+                    "."
+                ], style={
+                    'marginTop': '10px',
+                    'fontSize': 'clamp(0.9rem, 2.5vw, 1.1rem)',
+                    'opacity': '0.9',
+                    'fontFamily': 'Inter, sans-serif'
+                }, className='subtitle')
             ], style={
-                'marginTop': '10px',
-                'fontSize': '1.1rem',
-                'opacity': '0.9',
-                'fontFamily': 'Inter, sans-serif'
-            })
-        ], style={
-            'background': '#1e40af',
-            'color': '#ffffff',
-            'padding': '30px',
-            'borderBottom': '4px solid #000000',
-            'textAlign': 'center'
-        }),
+                'background': '#1e40af',
+                'color': '#ffffff',
+                'padding': 'clamp(20px, 4vw, 30px)',
+                'borderBottom': '4px solid #000000',
+                'textAlign': 'center'
+            }),
         
         # Configuration Section
         html.Div([
             html.H3("Configuration", style={
                 'color': '#1e40af',
-                'fontSize': '1.3rem',
+                'fontSize': 'clamp(1.1rem, 3vw, 1.3rem)',
                 'fontWeight': '600',
                 'marginBottom': '20px',
                 'textTransform': 'uppercase',
@@ -130,6 +265,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -170,6 +306,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -209,6 +346,7 @@ app.layout = html.Div([
                     })
                 ], style={
                     'flex': '1',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -216,8 +354,10 @@ app.layout = html.Div([
                 })
             ], style={
                 'display': 'flex',
+                'flexDirection': 'row',
+                'flexWrap': 'wrap',
                 'marginBottom': '20px'
-            }),
+            }, className='config-row'),
             
             # Sample Offset Parameters Row
             html.Div([
@@ -256,6 +396,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -295,6 +436,7 @@ app.layout = html.Div([
                     })
                 ], style={
                     'flex': '1',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -302,8 +444,10 @@ app.layout = html.Div([
                 })
             ], style={
                 'display': 'flex',
+                'flexDirection': 'row',
+                'flexWrap': 'wrap',
                 'marginBottom': '20px'
-            }),
+            }, className='config-row'),
             
             # Vector Parameters Row
             html.Div([
@@ -342,6 +486,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -381,6 +526,7 @@ app.layout = html.Div([
                     })
                 ], style={
                     'flex': '1',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -388,8 +534,10 @@ app.layout = html.Div([
                 })
             ], style={
                 'display': 'flex',
+                'flexDirection': 'row',
+                'flexWrap': 'wrap',
                 'marginBottom': '20px'
-            }),
+            }, className='config-row'),
             
             html.H4("Slit Angles", style={
                 'color': '#000000',
@@ -436,6 +584,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -476,6 +625,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -515,6 +665,7 @@ app.layout = html.Div([
                     })
                 ], style={
                     'flex': '1',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -522,8 +673,10 @@ app.layout = html.Div([
                 })
             ], style={
                 'display': 'flex',
+                'flexDirection': 'row',
+                'flexWrap': 'wrap',
                 'marginBottom': '20px'
-            }),
+            }, className='config-row'),
             
             html.H4("Deflector (Polar) Angles", style={
                 'color': '#000000',
@@ -570,6 +723,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -610,6 +764,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -649,6 +804,7 @@ app.layout = html.Div([
                     })
                 ], style={
                     'flex': '1',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -656,8 +812,10 @@ app.layout = html.Div([
                 })
             ], style={
                 'display': 'flex',
+                'flexDirection': 'row',
+                'flexWrap': 'wrap',
                 'marginBottom': '20px'
-            }),
+            }, className='config-row'),
             
             html.H4("Primitive Reciprocal Lattice Vectors", style={
                 'color': '#000000',
@@ -704,6 +862,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -744,6 +903,7 @@ app.layout = html.Div([
                 ], style={
                     'flex': '1',
                     'marginRight': '10px',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -783,6 +943,7 @@ app.layout = html.Div([
                     })
                 ], style={
                     'flex': '1',
+                    'marginBottom': '10px',
                     'background': '#ffffff',
                     'border': '2px solid #000000',
                     'padding': '15px',
@@ -790,16 +951,18 @@ app.layout = html.Div([
                 })
             ], style={
                 'display': 'flex',
+                'flexDirection': 'row',
+                'flexWrap': 'wrap',
                 'marginBottom': '20px'
             })
             
         ], style={
             'background': '#f8fafc',
             'border': '4px solid #000000',
-            'padding': '30px',
+            'padding': 'clamp(20px, 4vw, 30px)',
             'marginBottom': '20px',
             'boxShadow': '4px 4px 0px #000000'
-        }),
+        }, className='config-section'),
         
         # Download Button Section
         html.Div([
@@ -847,21 +1010,28 @@ app.layout = html.Div([
                 'boxShadow': '4px 4px 0px #000000',
                 'flex': '1'
             })
-        ], style={'display': 'flex'}),
+        ], style={
+            'display': 'flex',
+            'flexDirection': 'row',
+            'flexWrap': 'wrap'
+        }, className='plot-container'),
         
         dcc.Download(id="download-csv"),
         dcc.Store(id='calculated-data-store')
         
-    ], style={
-        'padding': '30px'
-    })
+            ], style={
+            'padding': 'clamp(15px, 3vw, 30px)',
+            'maxWidth': '1400px',
+            'margin': '0 auto'
+        }, className='main-container')
     
 ], style={
     'background': '#ffffff',
     'color': '#000000',
     'margin': '0',
-    'padding': '20px',
-    'fontFamily': 'Inter, sans-serif'
+    'padding': '0',
+    'fontFamily': 'Inter, sans-serif',
+    'minHeight': '100vh'
 })
 
 def parse_text_input(input_str, is_matrix=False):
@@ -974,22 +1144,33 @@ def update_plot(photon_energy, inner_potential, work_function,
             ),
             mode='markers',
             marker=dict(
-                size=5,
+                size=4,
                 color=slit_values,
                 colorscale='Viridis',
-                colorbar_title='Slit Angle (deg)'
+                colorbar_title='Slit Angle (deg)',
+                opacity=0.8
             )
         )])
         
         absolute_fig.update_layout(
-            title="Absolute Momentum Coordinates",
+            title=dict(
+                text="Absolute Momentum Coordinates",
+                font=dict(size=16),
+                x=0.5,
+                xanchor='center'
+            ),
             scene=dict(
                 xaxis_title="k_x (Å⁻¹)",
                 yaxis_title="k_y (Å⁻¹)",
                 zaxis_title="k_z (Å⁻¹)",
-                aspectmode='data'
+                aspectmode='data',
+                camera=dict(
+                    eye=dict(x=1.5, y=1.5, z=1.5)
+                )
             ),
-            margin=dict(l=0, r=0, b=0, t=40)
+            margin=dict(l=0, r=0, b=0, t=50),
+            height=500,
+            autosize=True
         )
         
         # Create 3D scatter plot for projected coordinates
@@ -1008,23 +1189,34 @@ def update_plot(photon_energy, inner_potential, work_function,
             ),
             mode='markers',
             marker=dict(
-                size=5,
+                size=4,
                 color=slit_values,
                 colorscale='Viridis',
-                colorbar_title='Slit Angle (deg)'
+                colorbar_title='Slit Angle (deg)',
+                opacity=0.8
             ),
             showlegend=False
         )])
         
         projected_fig.update_layout(
-            title="Momentum coordinates in the first Brillouin zone",
+            title=dict(
+                text="Momentum coordinates in the first Brillouin zone",
+                font=dict(size=16),
+                x=0.5,
+                xanchor='center'
+            ),
             scene=dict(
                 xaxis_title="k_x_rel (Å⁻¹)",
                 yaxis_title="k_y_rel (Å⁻¹)",
                 zaxis_title="k_z_rel (Å⁻¹)",
-                aspectmode='data'
+                aspectmode='data',
+                camera=dict(
+                    eye=dict(x=1.5, y=1.5, z=1.5)
+                )
             ),
-            margin=dict(l=0, r=0, b=0, t=40)
+            margin=dict(l=0, r=0, b=0, t=50),
+            height=500,
+            autosize=True
         )
 
 
